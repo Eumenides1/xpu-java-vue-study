@@ -1,0 +1,17 @@
+spring:
+  ## ?????
+  profiles:
+    active: test
+  application:
+    name: springboot-demo
+  datasource:
+    url: jdbc:mysql://${demo.mysql.ip}:${demo.mysql.port}/${demo.mysql.db}?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    username: ${demo.mysql.username}
+    password: ${demo.mysql.password}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+server:
+  port: ${demo.server.port}
+
+
+
