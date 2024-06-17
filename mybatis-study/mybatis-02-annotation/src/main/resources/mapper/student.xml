@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rookie.stack.mybatis.mapper.StudentMapper">
+    <resultMap id="studentMap" type="com.rookie.stack.mybatis.entity.Student">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="age" column="age"/>
+        <result property="birthday" column="birthday"/>
+        <association property="major" javaType="com.rookie.stack.mybatis.entity.Major">
+            <id property="id" column="major_id"/>
+            <result property="name" column="major_name"/>
+        </association>
+    </resultMap>
+    <select id="findAll" resultMap="studentMap">
+        select usr.*, maj.name as major_name
+        from xpu_student usr
+                 left join xpu_major maj on usr.major_id = maj.id;
+    </select>
+
+    <select id="findAllByMajorId" parameterType="string" resultType="com.rookie.stack.mybatis.entity.Student">
+        select * from xpu_student where major_id = #{majorId}
+    </select>
+</mapper>
