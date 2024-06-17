@@ -3,7 +3,15 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.rookie.stack.mybatis.mapper.MajorMapper">
-    <!-- 上面的namespace改掉 -->
+
+    <resultMap id="major" type="com.rookie.stack.mybatis.entity.Major">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="mark" column="mark"/>
+        <collection property="students" ofType="com.rookie.stack.mybatis.entity.Student"
+                    select="com.rookie.stack.mybatis.mapper.StudentMapper.findAllByMajorId" column="id"/>
+    </resultMap>
+
 
     <insert id="insert" parameterType="com.rookie.stack.mybatis.entity.Major">
         insert into xpu_major (id, name, mark) values (#{id}, #{name}, #{mark})
@@ -17,11 +25,11 @@
         delete from xpu_major where id = #{id}
     </delete>
 
-    <select id="findAll" resultType="com.rookie.stack.mybatis.entity.Major">
+    <select id="findAll" resultMap="major">
         select * from xpu_major
     </select>
 
-    <select id="findById" parameterType="string" resultType="com.rookie.stack.mybatis.entity.Major">
+    <select id="findById" parameterType="string" resultMap="major">
         select * from xpu_major where id = #{id}
     </select>
 </mapper>

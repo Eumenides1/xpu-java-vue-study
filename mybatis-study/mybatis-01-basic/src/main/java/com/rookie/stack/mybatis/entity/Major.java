@@ -1,5 +1,7 @@
 package com.rookie.stack.mybatis.entity;
 
+import java.util.Set;
+
 /**
  * @author eumenides
  * @description
@@ -12,6 +14,17 @@ public class Major {
     private String name;
 
     private String mark;
+    private Set<Student> students;
+
+    public Set<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(Set<Student> students) {
+        this.students = students;
+    }
+
+
 
     public String getId() {
         return id;
@@ -43,6 +56,7 @@ public class Major {
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", mark='" + mark + '\'' +
+                ", students=" + students +
                 '}';
     }
 }

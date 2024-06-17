@@ -18,4 +18,8 @@
         from xpu_student usr
                  left join xpu_major maj on usr.major_id = maj.id;
     </select>
+
+    <select id="findAllByMajorId" parameterType="string" resultType="com.rookie.stack.mybatis.entity.Student">
+        select * from xpu_student where major_id = #{majorId}
+    </select>
 </mapper>
