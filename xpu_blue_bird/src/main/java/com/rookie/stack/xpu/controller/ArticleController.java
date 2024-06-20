@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class ArticleController {
     @Resource
     private ArticleService articleService;
-
     @PostMapping("/new")
     public String newArticle(@RequestBody NewArticleReq req){
         boolean result = articleService.newArticle(req);
@@ -27,5 +26,4 @@ public class ArticleController {
         }
         return "插入失败";
     }
-
 }

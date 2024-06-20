@@ -1,9 +1,11 @@
 package com.rookie.stack.xpu.service.impl;
 
+import com.rookie.stack.xpu.dao.ArticlesDao;
 import com.rookie.stack.xpu.domain.entity.Articles;
 import com.rookie.stack.xpu.domain.vo.req.NewArticleReq;
 import com.rookie.stack.xpu.mapper.ArticlesMapper;
 import com.rookie.stack.xpu.service.ArticleService;
+import com.rookie.stack.xpu.service.adapter.NewArticleReqToArticle;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
@@ -14,27 +16,20 @@ import java.util.UUID;
  * @description
  * @date 2024/6/20
  */
+
+// controller 路由分发
+// service 参数校验 -> 文本一个审核 -> 分类存不存在 业务逻辑处理 数据库层的操作
 @Service
 public class ArticlesServiceImpl implements ArticleService {
 
     @Resource
-    private ArticlesMapper articlesMapper;
-
+    private ArticlesDao articlesDao;
     @Override
     public boolean newArticle(NewArticleReq req) {
-        String uuid = UUID.randomUUID().toString();
-        Articles articles = Articles.builder()
-                .articleId(uuid)
-                .title(req.getTitle())
-                .content(req.getContent())
-                .category(req.getCategory())
-                // TODO
-                .status(0)
-                .view(0)
-                .createBy("用户 id")
-                .build();
-        // 受影响的行数
-        int insert = articlesMapper.insert(articles);
+        // 组装业务实体
+        Articles articles = NewArticleReqToArticle.newArticleReqAdapter(req);
+        // 执行插入逻辑
+        int insert = articlesDao.insertArticle(articles);
         return insert == 1;
     }
 }
