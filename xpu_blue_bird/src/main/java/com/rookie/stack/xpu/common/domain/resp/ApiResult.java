@@ -1,6 +1,8 @@
 package com.rookie.stack.xpu.common.domain.resp;
+import com.rookie.stack.xpu.common.enums.CommonErrorEnum;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
+import org.springframework.http.HttpStatus;
 
 /**
  * @author eumenides
@@ -21,6 +23,7 @@ public class ApiResult<T> {
 
     public static <T> ApiResult<T> success() {
         ApiResult<T> apiResult = new ApiResult<T>();
+        apiResult.setCode(HttpStatus.OK.value());
         apiResult.setSuccess(Boolean.TRUE);
         apiResult.setData(null);
         return apiResult;
@@ -43,7 +46,7 @@ public class ApiResult<T> {
 
     public static <T> ApiResult<T> fail(String message) {
         ApiResult<T> apiResult = new ApiResult<T>();
-        apiResult.setCode(-1);
+        apiResult.setCode(CommonErrorEnum.BUSINESS_ERROR.getCode());
         apiResult.setMessage(message);
         apiResult.setSuccess(Boolean.FALSE);
         apiResult.setData(null);

@@ -1,6 +1,8 @@
 package com.rookie.stack.xpu.test;
 
+import com.rookie.stack.xpu.dao.UserDao;
 import com.rookie.stack.xpu.domain.entity.Articles;
+import com.rookie.stack.xpu.domain.entity.Users;
 import com.rookie.stack.xpu.mapper.ArticlesMapper;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
@@ -16,7 +18,8 @@ public class ArticleTest {
 
     @Resource
     private ArticlesMapper articlesMapper;
-
+    @Resource
+    private UserDao userDao;
     @Test
     public void insert() {
         Articles article = Articles.builder()

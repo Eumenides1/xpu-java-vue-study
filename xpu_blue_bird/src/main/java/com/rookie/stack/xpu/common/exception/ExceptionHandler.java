@@ -1,6 +1,7 @@
 package com.rookie.stack.xpu.common.exception;
 
 import com.rookie.stack.xpu.common.domain.resp.ApiResult;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  * @date 2024/6/21
  */
 @RestControllerAdvice
+@Slf4j
 public class ExceptionHandler {
 
 
@@ -28,6 +30,12 @@ public class ExceptionHandler {
         String message = errMsg.toString();
 
         return ApiResult.fail(message.substring(0, message.length() - 2));
+    }
+
+    @org.springframework.web.bind.annotation.ExceptionHandler(BusinessException.class)
+    public ApiResult<?> businessExceptionHandler(BusinessException e){
+        log.error("该用户已经存在啦");
+        return ApiResult.fail(e.getErrMsg());
     }
 
 

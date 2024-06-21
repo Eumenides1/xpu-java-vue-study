@@ -1,5 +1,7 @@
 package com.rookie.stack.xpu.dao;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.rookie.stack.xpu.common.enums.UserStatusEnum;
 import com.rookie.stack.xpu.domain.entity.Users;
 import com.rookie.stack.xpu.mapper.UserMapper;
 import jakarta.annotation.Resource;
@@ -19,4 +21,13 @@ public class UserDao {
     public Integer insertUser(Users users){
         return userMapper.insert(users);
     }
+
+    public Users getUserByPhone(String phone){
+        // QueryWrapper 条件构造器
+        QueryWrapper<Users> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("phone", phone);
+        queryWrapper.ne("status",UserStatusEnum.DELETED.getCode());
+        return userMapper.selectOne(queryWrapper);
+    }
+
 }

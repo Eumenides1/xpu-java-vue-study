@@ -36,7 +36,7 @@ public class Users {
     /** 用户头像 */
     private String avatar ;
     /** 个人描述 */
-    private String desc ;
+    private String userDesc ;
     /** 学号 */
     private Integer stuNum;
     /** 用户状态 */

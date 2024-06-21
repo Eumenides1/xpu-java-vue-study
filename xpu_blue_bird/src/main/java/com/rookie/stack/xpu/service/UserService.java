@@ -8,5 +8,5 @@ import com.rookie.stack.xpu.domain.vo.req.RegisterReq;
  * @date 2024/6/21
  */
 public interface UserService {
-    boolean register(RegisterReq req);
+    void register(RegisterReq req);
 }

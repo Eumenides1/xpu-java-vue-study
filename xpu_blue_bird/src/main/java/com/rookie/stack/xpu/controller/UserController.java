@@ -30,10 +30,7 @@ public class UserController {
             summary = "用户注册 API"
     )
     public ApiResult<Void> register(@RequestBody @Valid RegisterReq req){
-        boolean register = userService.register(req);
-        if (register) {
-            return ApiResult.success("注册成功");
-        }
-        return ApiResult.fail("注册失败");
+        userService.register(req);
+        return ApiResult.success();
     }
 }
