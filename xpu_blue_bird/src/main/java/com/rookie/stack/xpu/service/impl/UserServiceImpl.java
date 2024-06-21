@@ -21,10 +21,6 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao;
     @Override
     public boolean register(RegisterReq req) {
-        if (!Objects.equals(req.getPassword(), req.getRetryPassword())){
-            // TODO 抛出一个异常
-            return false;
-        }
         // TODO 正则校验手机号，邮箱
         Users users = RegisterAdapter.registerReqToUser(req);
         Integer insert = userDao.insertUser(users);
