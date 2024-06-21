@@ -5,14 +5,14 @@ import lombok.Getter;
 
 /**
  * @author eumenides
- * @description  文章状态枚举
+ * @description  用户状态枚举
  * @date 2024/6/20
  */
 @Getter
 @AllArgsConstructor
-public enum ArticleStatusEnum {
-    // 文章状态
-    CREATED(0, "初始化"),
+public enum UserStatusEnum {
+
+    CREATED(0, "创建中"),
     DELETED(3, "已删除");
 
     private final Integer code;

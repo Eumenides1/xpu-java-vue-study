@@ -32,4 +32,10 @@ public class OpenAPIConfig {
                 .group("文章相关接口文档")
                 .pathsToMatch("/v1/article/**").build();
     }
+    @Bean
+    public GroupedOpenApi userApi() {
+        return GroupedOpenApi.builder()
+                .group("用户相关接口文档")
+                .pathsToMatch("/v1/user/**").build();
+    }
 }
