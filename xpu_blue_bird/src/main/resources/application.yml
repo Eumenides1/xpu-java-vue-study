@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: xpu_blue_bird
+  banner:
+    charset: UTF-8
+    location: classpath:banner/banner.txt
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: 8uhb^YJm
+    url: jdbc:mysql://gz-cynosdbmysql-grp-ohj017lr.sql.tencentcdb.com:23186/xpu_blue_bird?useSSL=false&useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8
+    username: root
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+

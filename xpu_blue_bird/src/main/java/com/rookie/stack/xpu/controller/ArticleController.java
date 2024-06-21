@@ -1,7 +1,10 @@
 package com.rookie.stack.xpu.controller;
 
+import com.rookie.stack.xpu.common.domain.resp.ApiResult;
 import com.rookie.stack.xpu.domain.vo.req.NewArticleReq;
 import com.rookie.stack.xpu.service.ArticleService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,15 +18,19 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/v1/article")
+@Tag(name = "文章相关 API")
 public class ArticleController {
     @Resource
     private ArticleService articleService;
     @PostMapping("/new")
-    public String newArticle(@RequestBody NewArticleReq req){
+    @Operation(
+            summary = "新建文章 API"
+    )
+    public ApiResult newArticle(@RequestBody NewArticleReq req){
         boolean result = articleService.newArticle(req);
         if (result) {
-            return "插入成功";
+            return ApiResult.success("插入成功");
         }
-        return "插入失败";
+        return ApiResult.fail("插入失败");
     }
 }
