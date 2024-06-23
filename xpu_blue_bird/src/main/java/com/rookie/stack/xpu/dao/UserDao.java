@@ -30,4 +30,13 @@ public class UserDao {
         return userMapper.selectOne(queryWrapper);
     }
 
+    public Users getUserByUserNameOrPhone(String userNameOrPhone) {
+        QueryWrapper<Users> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("username", userNameOrPhone)
+                .or()
+                .eq("phone", userNameOrPhone);
+        queryWrapper.ne("status",UserStatusEnum.DELETED.getCode());
+        return userMapper.selectOne(queryWrapper);
+    }
+
 }

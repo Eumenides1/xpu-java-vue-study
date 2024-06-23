@@ -34,7 +34,6 @@ public class ExceptionHandler {
 
     @org.springframework.web.bind.annotation.ExceptionHandler(BusinessException.class)
     public ApiResult<?> businessExceptionHandler(BusinessException e){
-        log.error("该用户已经存在啦");
         return ApiResult.fail(e.getErrMsg());
     }
 
