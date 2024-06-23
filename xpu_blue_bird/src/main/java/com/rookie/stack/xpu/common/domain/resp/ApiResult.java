@@ -40,7 +40,6 @@ public class ApiResult<T> {
         ApiResult<T> apiResult = new ApiResult<T>();
         apiResult.setData(data);
         apiResult.setSuccess(Boolean.TRUE);
-        apiResult.setData(null);
         return apiResult;
     }
 

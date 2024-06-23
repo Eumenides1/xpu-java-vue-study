@@ -4,10 +4,12 @@ import cn.hutool.core.util.CharsetUtil;
 import cn.hutool.crypto.symmetric.SymmetricAlgorithm;
 import cn.hutool.crypto.symmetric.SymmetricCrypto;
 import com.rookie.stack.xpu.common.exception.BusinessException;
+import com.rookie.stack.xpu.common.utils.JwtUtil;
 import com.rookie.stack.xpu.dao.UserDao;
 import com.rookie.stack.xpu.domain.entity.Users;
 import com.rookie.stack.xpu.domain.vo.req.LoginReq;
 import com.rookie.stack.xpu.domain.vo.req.RegisterReq;
+import com.rookie.stack.xpu.domain.vo.resp.LoginSuccessResp;
 import com.rookie.stack.xpu.service.UserService;
 import com.rookie.stack.xpu.service.adapter.RegisterAdapter;
 import jakarta.annotation.Resource;
@@ -47,7 +49,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void login(LoginReq req, HttpSession session) {
+    public LoginSuccessResp login(LoginReq req) {
         // 首先先去数据库里查询用户，看看用户是否存在
         Users user = userDao.getUserByUserNameOrPhone(req.getUserNameOrPhone());
         if (user == null) {
@@ -57,8 +59,9 @@ public class UserServiceImpl implements UserService {
         if (!Objects.equals(password, req.getPassword())) {
             throw new BusinessException("密码不正确，请确认后重试");
         }
-        // 用户存在，密码正确，那就设置 session
-        session.setAttribute("user", user);
+        LoginSuccessResp resp = new LoginSuccessResp();
+        resp.setJwtToken(JwtUtil.generate(user.getUserId()));
+        return resp;
     }
 
     private String encryptPassword(String password) {
