@@ -30,10 +30,6 @@ public class ArticleController {
             summary = "新建文章 API"
     )
     public ApiResult<Void> newArticle(@RequestBody NewArticleReq req, HttpSession session){
-        Users user = (Users) session.getAttribute("user");
-        if (user == null) {
-            throw new BusinessException("请先登录");
-        }
         boolean result = articleService.newArticle(req);
         if (result) {
             return ApiResult.success("插入成功");
