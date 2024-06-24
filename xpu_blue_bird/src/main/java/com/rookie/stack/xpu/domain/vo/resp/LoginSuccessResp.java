@@ -1,5 +1,6 @@
 package com.rookie.stack.xpu.domain.vo.resp;
 
+import cn.dev33.satoken.stp.SaTokenInfo;
 import lombok.Data;
 
 /**
@@ -9,5 +10,5 @@ import lombok.Data;
  */
 @Data
 public class LoginSuccessResp {
-    private String jwtToken;
+    private SaTokenInfo saTokenInfo;
 }

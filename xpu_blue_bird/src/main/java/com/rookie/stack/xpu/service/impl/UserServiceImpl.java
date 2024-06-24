@@ -1,5 +1,7 @@
 package com.rookie.stack.xpu.service.impl;
 
+import cn.dev33.satoken.stp.SaTokenInfo;
+import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.core.util.CharsetUtil;
 import cn.hutool.crypto.symmetric.SymmetricAlgorithm;
 import cn.hutool.crypto.symmetric.SymmetricCrypto;
@@ -43,6 +45,7 @@ public class UserServiceImpl implements UserService {
         // 对密码进行加密
         users.setPassword(encryptPassword(req.getPassword()));
         Integer insert = userDao.insertUser(users);
+        // TODO 设置用户角色
         if (insert != 1) {
             throw new BusinessException("用户注册失败");
         }
@@ -60,7 +63,11 @@ public class UserServiceImpl implements UserService {
             throw new BusinessException("密码不正确，请确认后重试");
         }
         LoginSuccessResp resp = new LoginSuccessResp();
-        resp.setJwtToken(JwtUtil.generate(user.getUserId()));
+        // 密码校验成功后登录，一行代码实现登录
+        StpUtil.login(user.getUserId());
+        // 获取当前登录用户Token信息
+        SaTokenInfo saTokenInfo = StpUtil.getTokenInfo();
+        resp.setSaTokenInfo(saTokenInfo);
         return resp;
     }
 
