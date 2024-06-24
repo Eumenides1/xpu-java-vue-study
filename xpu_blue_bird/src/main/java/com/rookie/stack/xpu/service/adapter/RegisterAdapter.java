@@ -17,11 +17,9 @@ public class RegisterAdapter {
         return Users.builder()
                 .userId(UUID.randomUUID().toString())
                 .username(req.getUserName())
-                .password(req.getPassword())
                 .phone(req.getPhone())
                 .status(UserStatusEnum.CREATED.getCode())
                 .build();
     }
-
 
 }

@@ -17,3 +17,7 @@ mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
+blue-bird:
+  # 这里最好是 16个字符
+  secret: xputestxputestha
+

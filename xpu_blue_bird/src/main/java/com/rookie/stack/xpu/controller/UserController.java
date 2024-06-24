@@ -1,11 +1,13 @@
 package com.rookie.stack.xpu.controller;
 
 import com.rookie.stack.xpu.common.domain.resp.ApiResult;
+import com.rookie.stack.xpu.domain.vo.req.LoginReq;
 import com.rookie.stack.xpu.domain.vo.req.RegisterReq;
 import com.rookie.stack.xpu.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,6 +33,14 @@ public class UserController {
     )
     public ApiResult<Void> register(@RequestBody @Valid RegisterReq req){
         userService.register(req);
+        return ApiResult.success();
+    }
+    @PostMapping("/login")
+    @Operation(
+            summary = "用户登录 API"
+    )
+    public ApiResult<Void> login(@RequestBody @Valid LoginReq req, HttpSession session){
+        userService.login(req,session);
         return ApiResult.success();
     }
 }

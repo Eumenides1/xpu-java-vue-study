@@ -1,6 +1,8 @@
 package com.rookie.stack.xpu.service;
 
+import com.rookie.stack.xpu.domain.vo.req.LoginReq;
 import com.rookie.stack.xpu.domain.vo.req.RegisterReq;
+import jakarta.servlet.http.HttpSession;
 
 /**
  * @author eumenides
@@ -9,4 +11,7 @@ import com.rookie.stack.xpu.domain.vo.req.RegisterReq;
  */
 public interface UserService {
     void register(RegisterReq req);
+
+    void login(LoginReq req, HttpSession session);
+
 }
