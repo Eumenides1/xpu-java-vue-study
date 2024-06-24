@@ -27,6 +27,10 @@ public class LoginFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
             return;
         }
+        if ("/v1/user/register".equals(request.getRequestURI())) {
+            filterChain.doFilter(request, response);
+            return;
+        }
         Users user = (Users) request.getSession().getAttribute("user");
         if (user != null) {
             filterChain.doFilter(request, response);
