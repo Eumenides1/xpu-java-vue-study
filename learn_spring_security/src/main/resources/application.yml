@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: spring-security-demo
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: 8uhb^YJm
+    url: jdbc:mysql://gz-cynosdbmysql-grp-ohj017lr.sql.tencentcdb.com:23186/spring_security_learn?useSSL=false&useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8
+    username: root
+  security:
+    user:
+      name: jaguarliu
+      password: 123456
