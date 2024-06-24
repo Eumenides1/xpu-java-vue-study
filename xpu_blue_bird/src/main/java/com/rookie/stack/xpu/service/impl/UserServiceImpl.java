@@ -4,10 +4,12 @@ import cn.hutool.core.util.CharsetUtil;
 import cn.hutool.crypto.symmetric.SymmetricAlgorithm;
 import cn.hutool.crypto.symmetric.SymmetricCrypto;
 import com.rookie.stack.xpu.common.exception.BusinessException;
+import com.rookie.stack.xpu.common.utils.JwtUtil;
 import com.rookie.stack.xpu.dao.UserDao;
 import com.rookie.stack.xpu.domain.entity.Users;
 import com.rookie.stack.xpu.domain.vo.req.LoginReq;
 import com.rookie.stack.xpu.domain.vo.req.RegisterReq;
+import com.rookie.stack.xpu.domain.vo.resp.LoginSuccessResp;
 import com.rookie.stack.xpu.service.UserService;
 import com.rookie.stack.xpu.service.adapter.RegisterAdapter;
 import jakarta.annotation.Resource;
@@ -48,7 +50,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void login(LoginReq req, HttpSession session) {
+    public LoginSuccessResp login(LoginReq req) {
         // 获取下用户信息，判断用户是否存在
         Users user = userDao.getUserByUserNameOrPhone(req.getUserNameOrPhone());
         if (user == null) {
@@ -60,6 +62,8 @@ public class UserServiceImpl implements UserService {
             throw new BusinessException("密码错误，请确认后重试");
         }
         // 登录成功
-        session.setAttribute("user", user);
+        LoginSuccessResp resp = new LoginSuccessResp();
+        resp.setJwtToken(JwtUtil.generate(user.getUserId()));
+        return resp;
     }
 }

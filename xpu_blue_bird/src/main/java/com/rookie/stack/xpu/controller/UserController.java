@@ -3,6 +3,7 @@ package com.rookie.stack.xpu.controller;
 import com.rookie.stack.xpu.common.domain.resp.ApiResult;
 import com.rookie.stack.xpu.domain.vo.req.LoginReq;
 import com.rookie.stack.xpu.domain.vo.req.RegisterReq;
+import com.rookie.stack.xpu.domain.vo.resp.LoginSuccessResp;
 import com.rookie.stack.xpu.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -39,8 +40,9 @@ public class UserController {
     @Operation(
             summary = "用户登录 API"
     )
-    public ApiResult<Void> login(@RequestBody @Valid LoginReq req, HttpSession session){
-        userService.login(req,session);
-        return ApiResult.success();
+    public ApiResult<LoginSuccessResp> login(@RequestBody @Valid LoginReq req){
+        LoginSuccessResp login = userService.login(req);
+
+        return ApiResult.success(login);
     }
 }

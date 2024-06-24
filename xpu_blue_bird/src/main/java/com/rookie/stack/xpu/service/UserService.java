@@ -2,6 +2,7 @@ package com.rookie.stack.xpu.service;
 
 import com.rookie.stack.xpu.domain.vo.req.LoginReq;
 import com.rookie.stack.xpu.domain.vo.req.RegisterReq;
+import com.rookie.stack.xpu.domain.vo.resp.LoginSuccessResp;
 import jakarta.servlet.http.HttpSession;
 
 /**
@@ -12,6 +13,6 @@ import jakarta.servlet.http.HttpSession;
 public interface UserService {
     void register(RegisterReq req);
 
-    void login(LoginReq req, HttpSession session);
+    LoginSuccessResp login(LoginReq req);
 
 }
