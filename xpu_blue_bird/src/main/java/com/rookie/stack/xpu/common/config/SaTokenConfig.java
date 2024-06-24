@@ -28,5 +28,6 @@ public class SaTokenConfig implements WebMvcConfigurer {
         registry.addInterceptor(new SaInterceptor(handle -> StpUtil.checkLogin()))
                 .addPathPatterns("/**")
                 .excludePathPatterns("/v1/user/login","/v1/user/register");
+        SaRouter.match("/user/**", r -> StpUtil.checkPermission("user"));
     }
 }

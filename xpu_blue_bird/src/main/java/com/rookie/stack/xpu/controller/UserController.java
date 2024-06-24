@@ -1,5 +1,7 @@
 package com.rookie.stack.xpu.controller;
 
+import cn.dev33.satoken.annotation.SaCheckPermission;
+import cn.dev33.satoken.annotation.SaCheckRole;
 import cn.dev33.satoken.stp.StpUtil;
 import com.rookie.stack.xpu.common.domain.resp.ApiResult;
 import com.rookie.stack.xpu.domain.vo.req.LoginReq;
