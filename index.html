@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue 入门</title>
+</head>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<body> 
+    <div id="app">
+        
+    </div>
+</body>
+<script>
+    const app = Vue.createApp({
+        data(){
+            return {
+                message: 'Hello World',
+                count: 2,
+                price: 5,
+                newTotal: 10
+            }
+        },
+        watch: {
+            price(current, prev){
+                this.newTotal = current * this.count
+            }
+            
+        },
+        computed: {
+            total(){
+                return this.count * this.price
+            }
+        },
+        template: '<div>{{newTotal}}</div>'
+    })
+    const vm = app.mount('#app')
+</script>
+</html>
