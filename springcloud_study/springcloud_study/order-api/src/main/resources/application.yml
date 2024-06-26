@@ -1,0 +1,16 @@
+server:
+  port: 8082
+spring:
+  application:
+    name: order-api
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://gz-cynosdbmysql-grp-ohj017lr.sql.tencentcdb.com:23186/springcloud_study?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=true
+    username: root
+    password: 8uhb^YJm
+  jpa:
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: update
+        dialect: org.hibernate.dialect.MySQL8Dialect
