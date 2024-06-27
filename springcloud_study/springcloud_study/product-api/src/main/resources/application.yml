@@ -8,6 +8,10 @@ spring:
     url: jdbc:mysql://gz-cynosdbmysql-grp-ohj017lr.sql.tencentcdb.com:23186/springcloud_study?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=true
     username: root
     password: 8uhb^YJm
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
   jpa:
     properties:
       hibernate:
