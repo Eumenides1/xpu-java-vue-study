@@ -22,6 +22,12 @@ spring:
       transport:
         port: 8078
         dashboard: localhost:8079
+    zipkin:
+      base-url: http://localhost:9411
+      discoveryClientEnabled: false
+      sleuth:
+        sampler:
+          probability: 1.0
   jpa:
     properties:
       hibernate:
