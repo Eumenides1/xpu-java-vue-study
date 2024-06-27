@@ -1,0 +1,24 @@
+server:
+  port: 9000
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+    loadbalander:
+      ribbon:
+        enable: false
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+#      routes:
+#        - id: product_route
+#          uri: lb://product-api
+#          order: 1
+#          predicates:
+#            - Path=/product-serv/**
+#          filters:
+#            - StripPrefix=1

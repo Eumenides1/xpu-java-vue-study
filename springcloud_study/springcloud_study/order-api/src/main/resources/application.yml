@@ -18,6 +18,10 @@ spring:
           default:
             connectTimeout: 5000
             readTimeout: 5000
+    sentinel:
+      transport:
+        port: 8078
+        dashboard: localhost:8079
   jpa:
     properties:
       hibernate:
