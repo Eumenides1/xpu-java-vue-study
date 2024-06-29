@@ -38,3 +38,6 @@ application-test.properties
 .idea/
 
 .mvn/
+
+
+node_modules/
